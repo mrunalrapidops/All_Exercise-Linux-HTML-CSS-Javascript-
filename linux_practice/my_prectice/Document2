@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# sysinfo_page - A script to produce an HTML file
+checkpass()
+{
+  read -p "Enter a password" pass
+if test "$pass" = "jerry"
+then
+     echo "Password verified."
+     echo "your id $id "
+#	firefox Document2.html 
+else
+     echo "Access denied."	
+fi
+}
+ time_insec()
+{
+seconds=0
+
+echo -n "Enter number of seconds > "
+read seconds
+
+hours=$((seconds / 3600))
+seconds=$((seconds % 3600))
+minutes=$((seconds / 60))
+seconds=$((seconds % 60))
+
+echo "$hours hour(s) $minutes minute(s) $seconds second(s)"
+}
+       
+title="My System Information"
+RIGHT_NOW=$(date +"%x %r %Z")
+time_stamp="Updated on $right_now by"
+cat <<- _EOF_
+    <html>
+    <head>
+        <title>
+        $title
+        </title>
+    </head>
+
+    <body>
+    <h1>$title</h1>
+	<P>$title CREATED ON $RIGHT_NOW</p>
+ 	<p>$time_stamp<b>$USER</b></p>
+	<p>$TIME_STAMP</p>
+    $(checkpass)
+    $(time_insec)
+  </body>
+    </body>
+    </html>
+_EOF_
+
+
+       
